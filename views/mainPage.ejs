@@ -25,11 +25,11 @@
       margin-right: 10px;
     }
     .material-input {
-      width: 100px;
+      width: 50%;
       text-align: center;
     }
     .material-input2 {
-      width: 100px;
+      width: 50%;
       text-align: center;
     }
     .parent-container {
@@ -142,7 +142,7 @@
           <div>
             <div class="flex-container">
               <span style="margin-right: 10px;">목표수량 :</span>
-              <input id="goal" type="number" min="1" step="1" oninput="validateGoalInput(this)" style="text-align: right;">
+              <input id="goal" type="number" min="0" step="1" oninput="validateGoalInput(this)" style="text-align: right;">
               <button style="margin-left: 10px;" onclick="calculate()">계산</button>
             </div>
             <span>가지고 있는 수량</span>
@@ -154,37 +154,37 @@
             <div class="input-container">
               <span class="span-container">2티어</span>
               <span id="tier2" class="tier-span"></span>
-              <input id="haveMaterial2" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
+              <input id="haveMaterial2" type="number" min="0" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">3티어</span>
               <span id="tier3" class="tier-span"></span>
-              <input id="haveMaterial3" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
+              <input id="haveMaterial3" type="number" min="0" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">4티어</span>
               <span id="tier4" class="tier-span"></span>
-              <input id="haveMaterial4" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
+              <input id="haveMaterial4" type="number" min="0" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">5티어</span>
               <span id="tier5" class="tier-span"></span>
-              <input id="haveMaterial5" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
+              <input id="haveMaterial5" type="number" min="0" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">6티어</span>
               <span id="tier6" class="tier-span"></span>
-              <input id="haveMaterial6" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
+              <input id="haveMaterial6" type="number" min="0" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">7티어</span>
               <span id="tier7" class="tier-span"></span>
-              <input id="haveMaterial7" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
+              <input id="haveMaterial7" type="number" min="0" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">8티어</span>
               <span id="tier8" class="tier-span"></span>
-              <input id="haveMaterial8" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
+              <input id="haveMaterial8" type="number" min="0" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
           </div>
       
@@ -705,8 +705,14 @@
             break;
           case 3:
               needMaterial3.value = goalValue * 2;
-              needMaterial2.value = (goalValue - haveMaterialId2) * 1
-              
+              temp2 = (goalValue - haveMaterialId2) * 1;
+              // 마이너스 값 확인
+              if (temp2 >= 0) {
+                needMaterial2.value = temp2;
+              } else {
+                needMaterial2.value = haveMaterialId2 + '개 중 ' + (haveMaterialId2 - Math.abs(temp2)) + '개만 사용';
+              }
+
               // 나머지 칸 필드 비활성화
               for (var i = 4; i <= 8; i++) {
                 var needMaterial = document.getElementById("needMaterial" + i);
@@ -715,9 +721,9 @@
 
             break;
           case 4:
-              needMaterial4.value = goalValue * 2;
-              needMaterial3.value = (goalValue - haveMaterialId3) * 2;
-              needMaterial2.value = (goalValue - haveMaterialId3 - haveMaterialId2) * 1;
+            needMaterial4.value = goalValue * 2;
+            needMaterial3.value = (goalValue - haveMaterialId3) * 2;
+            needMaterial2.value = (goalValue - haveMaterialId3 - haveMaterialId2) * 1;            
 
               // 나머지 칸 필드 비활성화
               for (var i = 5; i <= 8; i++) {
