@@ -12,12 +12,7 @@
     td {
       border: 1px solid black;
       padding: 5px;
-    }
-    .flex-container {
-      display: flex;
-      margin-top: 10px;
-    }
-  
+    } 
     .input-container {
       display: flex;
       width: 350px;
@@ -29,15 +24,38 @@
       width: 250px;
       margin-right: 10px;
     }
-  
     .material-input {
       width: 100px;
       text-align: center;
     }
-
     .material-input2 {
       width: 100px;
       text-align: center;
+    }
+    .parent-container {
+      display: flex;
+      width: 100%;
+    }
+    .left-container {
+      width: 30%;
+    }
+    .right-container {
+      width: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .flex-container {
+      display: flex;
+      margin-top: 10px;
+    }
+    .horizontal-container {
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .horizontal-container > div {
+      margin: 10px 0; 
     }
   </style>
 </head>
@@ -312,130 +330,149 @@
 <br>
 <hr>
 
-
-<div style="display: flex; margin-top: 20px;">
-  <span style="margin-right: 10px;">종류 : </span>
-  <div>
-    <select id="selectMaterial" style="text-align: center;" onchange="updateTierLabels(); calculateTierLabels();">
-      <option value="Wood">목재</option> 
-      <option value="Stone">석재</option>
-      <option value="Ore">광석</option>
-      <option value="Leather">가죽</option>
-      <option value="Textile">섬유</option>
-    </select>
-  </div>
-
-  <span style="margin-right: 10px; margin-left: 10px;">티어 : </span>
-  <div>
-    <select id="selectTier" style="text-align: center;" onclick="showProductName()">
-      <option value="1">1</option> 
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-    </select>
-  </div>
-  <span id="nameProduct" style="margin-left: 20px;"></span>
-</div>
-
 <div>
-  <div class="flex-container">
-    <span style="margin-right: 10px;">목표수량 :</span>
-    <input id="goal" type="number" min="1" step="1" oninput="validateGoalInput(this)" style="text-align: right;">
-    <button style="margin-left: 10px;" onclick="calculate()">계산</button>
-  </div>
-  <span>가지고 있는 수량</span>
-  <div class="input-container">
-    <span class="span-container">1티어</span>
-    <span id="tier1" class="tier-span"></span>
-    <input id="haveMaterial1" type="text" class="material-input" disabled>
-  </div>
-  <div class="input-container">
-    <span class="span-container">2티어</span>
-    <span id="tier2" class="tier-span"></span>
-    <input id="haveMaterial2" type="text" class="material-input">
-  </div>
-  <div class="input-container">
-    <span class="span-container">3티어</span>
-    <span id="tier3" class="tier-span"></span>
-    <input id="haveMaterial3" type="text" class="material-input">
-  </div>
-  <div class="input-container">
-    <span class="span-container">4티어</span>
-    <span id="tier4" class="tier-span"></span>
-    <input id="haveMaterial4" type="text" class="material-input">
-  </div>
-  <div class="input-container">
-    <span class="span-container">5티어</span>
-    <span id="tier5" class="tier-span"></span>
-    <input id="haveMaterial5" type="text" class="material-input">
-  </div>
-  <div class="input-container">
-    <span class="span-container">6티어</span>
-    <span id="tier6" class="tier-span"></span>
-    <input id="haveMaterial6" type="text" class="material-input">
-  </div>
-  <div class="input-container">
-    <span class="span-container">7티어</span>
-    <span id="tier7" class="tier-span"></span>
-    <input id="haveMaterial7" type="text" class="material-input">
-  </div>
-  <div class="input-container">
-    <span class="span-container">8티어</span>
-    <span id="tier8" class="tier-span"></span>
-    <input id="haveMaterial8" type="text" class="material-input">
-  </div>
+  <div>
+    <div style="display: flex; margin-top: 20px;">
+      <span style="margin-right: 10px;">종류 : </span>
+      <div>
+        <select id="selectMaterial" style="text-align: center;" onchange="updateTierLabels(); calculateTierLabels();">
+          <option value="Wood">목재</option> 
+          <option value="Stone">석재</option>
+          <option value="Ore">광석</option>
+          <option value="Leather">가죽</option>
+          <option value="Textile">섬유</option>
+        </select>
+      </div>
 
-  <div style="margin-top: 30px;">
-    <span>필요한 재료</span>
-    <div class="input-container">
-      <span class="span-container">1티어</span>
-      <span id="ttier1" class="tier-span"></span>
-      <input id="needMaterial1" type="text" class="material-input2" disabled>
-    </div>
-    <div class="input-container">
-      <span class="span-container">2티어</span>
-      <span id="ttier2" class="tier-span"></span>
-      <input id="needMaterial2" type="text" class="material-input2">
-    </div>
-    <div class="input-container">
-      <span class="span-container">3티어</span>
-      <span id="ttier3" class="tier-span"></span>
-      <input id="needMaterial3" type="text" class="material-input2">
-    </div>
-    <div class="input-container">
-      <span class="span-container">4티어</span>
-      <span id="ttier4" class="tier-span"></span>
-      <input id="needMaterial4" type="text" class="material-input2">
-    </div>
-    <div class="input-container">
-      <span class="span-container">5티어</span>
-      <span id="ttier5" class="tier-span"></span>
-      <input id="needMaterial5" type="text" class="material-input2">
-    </div>
-    <div class="input-container">
-      <span class="span-container">6티어</span>
-      <span id="ttier6" class="tier-span"></span>
-      <input id="needMaterial6" type="text" class="material-input2">
-    </div>
-    <div class="input-container">
-      <span class="span-container">7티어</span>
-      <span id="ttier7" class="tier-span"></span>
-      <input id="needMaterial7" type="text" class="material-input2">
-    </div>
-    <div class="input-container">
-      <span class="span-container">8티어</span>
-      <span id="ttier8" class="tier-span"></span>
-      <input id="needMaterial8" type="text" class="material-input2">
-    </div>  
-
-
-
+      <span style="margin-right: 10px; margin-left: 10px;">티어 : </span>
+        <div>
+          <select id="selectTier" style="text-align: center;" onclick="showProductName()">
+            <option value="1">1</option> 
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+          <span id="nameProduct" style="margin-left: 20px;"></span>
+      </div>
+      <div class="parent-container">
+        <div class="left-container">
+          <div>
+            <div class="flex-container">
+              <span style="margin-right: 10px;">목표수량 :</span>
+              <input id="goal" type="number" min="1" step="1" oninput="validateGoalInput(this)" style="text-align: right;">
+              <button style="margin-left: 10px;" onclick="calculate()">계산</button>
+            </div>
+            <span>가지고 있는 수량</span>
+            <div class="input-container">
+              <span class="span-container">1티어</span>
+              <span id="tier1" class="tier-span"></span>
+              <input id="haveMaterial1" type="text" class="material-input" disabled>
+            </div>
+            <div class="input-container">
+              <span class="span-container">2티어</span>
+              <span id="tier2" class="tier-span"></span>
+              <input id="haveMaterial2" type="text" class="material-input">
+            </div>
+            <div class="input-container">
+              <span class="span-container">3티어</span>
+              <span id="tier3" class="tier-span"></span>
+              <input id="haveMaterial3" type="text" class="material-input">
+            </div>
+            <div class="input-container">
+              <span class="span-container">4티어</span>
+              <span id="tier4" class="tier-span"></span>
+              <input id="haveMaterial4" type="text" class="material-input">
+            </div>
+            <div class="input-container">
+              <span class="span-container">5티어</span>
+              <span id="tier5" class="tier-span"></span>
+              <input id="haveMaterial5" type="text" class="material-input">
+            </div>
+            <div class="input-container">
+              <span class="span-container">6티어</span>
+              <span id="tier6" class="tier-span"></span>
+              <input id="haveMaterial6" type="text" class="material-input">
+            </div>
+            <div class="input-container">
+              <span class="span-container">7티어</span>
+              <span id="tier7" class="tier-span"></span>
+              <input id="haveMaterial7" type="text" class="material-input">
+            </div>
+            <div class="input-container">
+              <span class="span-container">8티어</span>
+              <span id="tier8" class="tier-span"></span>
+              <input id="haveMaterial8" type="text" class="material-input">
+            </div>
+          </div>
+      
+          <div style="margin-top: 30px;">
+            <span>필요한 재료</span>
+            <div class="input-container">
+              <span class="span-container">1티어</span>
+              <span id="ttier1" class="tier-span"></span>
+              <input id="needMaterial1" type="text" class="material-input2">
+            </div>
+            <div class="input-container">
+              <span class="span-container">2티어</span>
+              <span id="ttier2" class="tier-span"></span>
+              <input id="needMaterial2" type="text" class="material-input2">
+            </div>
+            <div class="input-container">
+              <span class="span-container">3티어</span>
+              <span id="ttier3" class="tier-span"></span>
+              <input id="needMaterial3" type="text" class="material-input2">
+            </div>
+            <div class="input-container">
+              <span class="span-container">4티어</span>
+              <span id="ttier4" class="tier-span"></span>
+              <input id="needMaterial4" type="text" class="material-input2">
+            </div>
+            <div class="input-container">
+              <span class="span-container">5티어</span>
+              <span id="ttier5" class="tier-span"></span>
+              <input id="needMaterial5" type="text" class="material-input2">
+            </div>
+            <div class="input-container">
+              <span class="span-container">6티어</span>
+              <span id="ttier6" class="tier-span"></span>
+              <input id="needMaterial6" type="text" class="material-input2">
+            </div>
+            <div class="input-container">
+              <span class="span-container">7티어</span>
+              <span id="ttier7" class="tier-span"></span>
+              <input id="needMaterial7" type="text" class="material-input2">
+            </div>
+            <div class="input-container">
+              <span class="span-container">8티어</span>
+              <span id="ttier8" class="tier-span"></span>
+              <input id="needMaterial8" type="text" class="material-input2">
+            </div>  
+          </div>
+        </div>
+      
+        <div class="right-container">
+          <div class="horizontal-container">
+            <div>2티어 가공품 : 2티어 원재료 1개</div>
+            <div>3티어 가공품 : 3티어 원재료 2개, 2티어 가공품 1개</div>
+            <div>4티어 가공품 : 4티어 원재료 2개, 3티어 가공품 1개</div>
+            <div>5티어 가공품 : 5티어 원재료 3개, 4티어 가공품 1개</div>
+            <div>6티어 가공품 : 6티어 원재료 4개, 5티어 가공품 1개</div>
+            <div>7티어 가공품 : 7티어 원재료 5개, 6티어 가공품 1개</div>
+            <div>8티어 가공품 : 8티어 원재료 5개, 7티어 가공품 1개</div>
+          </div>
+        </div>
+      </div>
 
 </div>
+<br>
+<hr>
+<br>
+<span>&#x24B8;&nbsp;Yang</span>
 
 
 <script>
@@ -588,9 +625,29 @@
     // 계산 버튼
     function calculate() {
       resetMaterials2(); // 인풋박스 한번에 비우기
+      document.getElementById('needMaterial1').disabled = true; // 1티어는 비활성화
+
       var materialValue = document.getElementById("selectMaterial").value; // 재료
       var tierValue = parseInt(document.getElementById("selectTier").value); // 티어
       var goalValue = document.getElementById("goal").value; // 목표수량
+
+      var haveMaterialId2 = document.getElementById("haveMaterial2").value.match(/\d+/); // 가지고 있는 2티어 가공품
+      var input_haveMaterial2 = haveMaterialId2 ? parseInt(haveMaterialId2[0]) : 0; // 가지고 있는 2티어 가공품에서 숫자값만 추출
+
+      var haveMaterialId3 = document.getElementById("haveMaterial3").value.match(/\d+/); // 가지고 있는 3티어 가공품
+      var input_haveMaterial3 = haveMaterialId3 ? parseInt(haveMaterialId3[0]) : 0; // 가지고 있는 3티어 가공품에서 숫자값만 추출
+
+      var haveMaterialId4 = document.getElementById("haveMaterial4").value.match(/\d+/); // 가지고 있는 4티어 가공품
+      var input_haveMaterial4 = haveMaterialId4 ? parseInt(haveMaterialId4[0]) : 0; // 가지고 있는 4티어 가공품에서 숫자값만 추출
+
+      var haveMaterialId5 = document.getElementById("haveMaterial5").value.match(/\d+/); // 가지고 있는 5티어 가공품
+      var input_haveMaterial5 = haveMaterialId5 ? parseInt(haveMaterialId5[0]) : 0; // 가지고 있는 5티어 가공품에서 숫자값만 추출
+
+      var haveMaterialId6 = document.getElementById("haveMaterial6").value.match(/\d+/); // 가지고 있는 6티어 가공품
+      var input_haveMaterial6 = haveMaterialId6 ? parseInt(haveMaterialId6[0]) : 0; // 가지고 있는 6티어 가공품에서 숫자값만 추출
+
+      var haveMaterialId7 = document.getElementById("haveMaterial7").value.match(/\d+/); // 가지고 있는 7티어 가공품
+      var input_haveMaterial7 = haveMaterialId7 ? parseInt(haveMaterialId7[0]) : 0; // 가지고 있는 7티어 가공품에서 숫자값만 추출
 
       if(goalValue == "") {
         alert('수량이 입력되지 않았습니다.');
@@ -600,81 +657,91 @@
             alert('1티어는 만들 수 없습니다.');
             break;
           case 2:
-            needMaterial2.value = goalValue * 1; // 2렙 : 2렙 재료 1개 필요
-            // 나머지 칸 비활성화
-            for (var i = 1; i <= 8; i++) {
+            needMaterial2.value = goalValue * 1;
+
+            // 나머지 칸 필드 비활성화
+            for (var i = 3; i <= 8; i++) {
               var needMaterial = document.getElementById("needMaterial" + i);
-              if (i !== 2) {
-                  needMaterial.disabled = true;
-              }
+              needMaterial.disabled = true;
             }
+
             break;
           case 3:
-            var haveMaterialId2 = document.getElementById("haveMaterial2").value.match(/\d+/); // 가지고 있는 2티어 가공품
-            var input_haveMaterial2 = haveMaterialId2 ? parseInt(haveMaterialId2[0]) : 0; // 선택값에서 숫자만 추출
+            needMaterial3.value = goalValue * 2;
+            needMaterial2.value = (goalValue - input_haveMaterial2) * 1
+            
+            // 나머지 칸 필드 비활성화
+            for (var i = 4; i <= 8; i++) {
+              var needMaterial = document.getElementById("needMaterial" + i);
+              needMaterial.disabled = true;
+            }
 
-              // 가지고있는 2티어 가공품이 없을때 : 2렙 재료 1개 필요
-              if (input_haveMaterial2 == "") {
-                needMaterial2.value = goalValue * 1;
-              // 가지고있는 2티어 가공품이 있을때 : 가공품 있는 만큼 먼저 제외하고 나머지 계산
-              } else {
-                needMaterial2.value = goalValue * 1 - input_haveMaterial2;
-              }
-              // 3티어 원재료는 공통 : 3렙 원재료 2개 필요
-              needMaterial3.value = goalValue * 2; 
-
-              // 나머지 칸 필드 비활성화
-              for (var i = 4; i <= 8; i++) {
-                var needMaterial = document.getElementById("needMaterial" + i);
-                needMaterial.disabled = true;
-              }
             break;
           case 4:
-            var haveMaterialId2 = document.getElementById("haveMaterial2").value.match(/\d+/); // 가지고 있는 2티어 가공품
-            var haveMaterialId3 = document.getElementById("haveMaterial3").value.match(/\d+/); // 가지고 있는 3티어 가공품
-            var input_haveMaterial2 = haveMaterialId2 ? parseInt(haveMaterialId2[0]) : 0; // 선택값에서 숫자만 추출
-            var input_haveMaterial3 = haveMaterialId3 ? parseInt(haveMaterialId3[0]) : 0; // 선택값에서 숫자만 추출
+            needMaterial4.value = goalValue * 2;
+            needMaterial3.value = (goalValue - input_haveMaterial3) * 2;
+            needMaterial2.value = (goalValue - input_haveMaterial3 - input_haveMaterial2) * 1;
 
-            // 가지고있는 3티어 가공품이 없을때
-            if (input_haveMaterial3 == "") {
-              needMaterial2.value = (goalValue * 1) - input_haveMaterial2;
-              needMaterial3.value = goalValue * 2;
-            // 가지고있는 3티어 가공품이 있을때 : 가공품 있는 만큼 먼저 제외하고 나머지 계산
-            } else {
-              // 가지고 있는 3티어 가공품이 충분할때
-              if (input_haveMaterial3 >= goalValue) {
-                needMaterial2.value = "";
-                needMaterial3.value = "";
-              // 3티어 가공품이 있긴 한데 부족할때
-              } else {
-                temp_needMaterial3 = goalValue - input_haveMaterial3; // 3티어 가공품 부족분
-                needMaterial2.value = (temp_needMaterial3 * 1) - input_haveMaterial2;
-                needMaterial3.value = temp_needMaterial3 * 2;
-              }
-            }
-            // 4티어 원재료는 공통 : 4렙 원재료 2개 필요
-            needMaterial4.value = goalValue * 2; 
-            
             // 나머지 칸 필드 비활성화
             for (var i = 5; i <= 8; i++) {
               var needMaterial = document.getElementById("needMaterial" + i);
               needMaterial.disabled = true;
             }
+
             break;
           case 5:
-            // Your logic for tier 5
+            needMaterial5.value = goalValue * 3;
+            needMaterial4.value = (goalValue - input_haveMaterial4) * 2;
+            needMaterial3.value = (goalValue - input_haveMaterial4 - input_haveMaterial3) * 2;
+            needMaterial2.value = (goalValue - input_haveMaterial4 - input_haveMaterial3 - input_haveMaterial2) * 1;
+            
+            // 나머지 칸 필드 비활성화
+            for (var i = 6; i <= 8; i++) {
+              var needMaterial = document.getElementById("needMaterial" + i);
+              needMaterial.disabled = true;
+            }
             break;
           case 6:
-            // Your logic for tier 6
+            needMaterial6.value = goalValue * 4;
+            needMaterial5.value = (goalValue - input_haveMaterial5) * 3;
+            needMaterial4.value = (goalValue - input_haveMaterial5 - input_haveMaterial4) * 2;
+            needMaterial3.value = (goalValue - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3) * 2;
+            needMaterial2.value = (goalValue - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3 - input_haveMaterial2) * 1;
+            
+            // 나머지 칸 필드 비활성화
+            for (var i = 7; i <= 8; i++) {
+              var needMaterial = document.getElementById("needMaterial" + i);
+              needMaterial.disabled = true;
+            }
+
             break;
           case 7:
-            // Your logic for tier 7
+            needMaterial7.value = goalValue * 5;
+            needMaterial6.value = (goalValue - input_haveMaterial6) * 4;
+            needMaterial5.value = (goalValue - input_haveMaterial6 - input_haveMaterial5) * 3;
+            needMaterial4.value = (goalValue - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4) * 2;
+            needMaterial3.value = (goalValue - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3) * 2;
+            needMaterial2.value = (goalValue - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3 - input_haveMaterial2) * 1;
+
+            // 나머지 칸 필드 비활성화
+            for (var i = 8; i <= 8; i++) {
+              var needMaterial = document.getElementById("needMaterial" + i);
+              needMaterial.disabled = true;
+            }
+
             break;
           case 8:
-            // Your logic for tier 8
+            needMaterial8.value = goalValue * 5;
+            needMaterial7.value = (goalValue - input_haveMaterial7) * 5;
+            needMaterial6.value = (goalValue - input_haveMaterial7 - input_haveMaterial6) * 4;
+            needMaterial5.value = (goalValue - input_haveMaterial7 - input_haveMaterial6 - input_haveMaterial5) * 3;
+            needMaterial4.value = (goalValue - input_haveMaterial7 - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4) * 2;
+            needMaterial3.value = (goalValue - input_haveMaterial7 - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3) * 2;
+            needMaterial2.value = (goalValue - input_haveMaterial7 - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3 - input_haveMaterial2) * 1;
+
             break;
           default:
-            // Handle any other cases
+            
             break;
         }
       }
