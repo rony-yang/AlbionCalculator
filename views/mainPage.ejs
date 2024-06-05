@@ -521,8 +521,8 @@
 
   // 목표 수량에는 숫자만 들어가도록
   function validateGoalInput(input) {
-    if (input.value < 1) {
-      input.value = 1;
+    if (input.value < 0) {
+      input.value = 0;
     }
   }
 
