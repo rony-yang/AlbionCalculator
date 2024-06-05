@@ -371,42 +371,42 @@
             <div class="input-container">
               <span class="span-container">1티어</span>
               <span id="tier1" class="tier-span"></span>
-              <input id="haveMaterial1" type="text" class="material-input" disabled>
+              <input id="haveMaterial1" type="text" class="material-input" disabled> 
             </div>
             <div class="input-container">
               <span class="span-container">2티어</span>
               <span id="tier2" class="tier-span"></span>
-              <input id="haveMaterial2" type="text" class="material-input">
+              <input id="haveMaterial2" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">3티어</span>
               <span id="tier3" class="tier-span"></span>
-              <input id="haveMaterial3" type="text" class="material-input">
+              <input id="haveMaterial3" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">4티어</span>
               <span id="tier4" class="tier-span"></span>
-              <input id="haveMaterial4" type="text" class="material-input">
+              <input id="haveMaterial4" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">5티어</span>
               <span id="tier5" class="tier-span"></span>
-              <input id="haveMaterial5" type="text" class="material-input">
+              <input id="haveMaterial5" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">6티어</span>
               <span id="tier6" class="tier-span"></span>
-              <input id="haveMaterial6" type="text" class="material-input">
+              <input id="haveMaterial6" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">7티어</span>
               <span id="tier7" class="tier-span"></span>
-              <input id="haveMaterial7" type="text" class="material-input">
+              <input id="haveMaterial7" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
             <div class="input-container">
               <span class="span-container">8티어</span>
               <span id="tier8" class="tier-span"></span>
-              <input id="haveMaterial8" type="text" class="material-input">
+              <input id="haveMaterial8" type="number" min="1" step="1" oninput="validateGoalInput(this)" class="material-input" style="text-align: right;">
             </div>
           </div>
       
@@ -497,6 +497,7 @@
               haveMaterialInput.disabled = true;
           }
       }
+      document.getElementById('haveMaterial1').disabled = true; // 1티어는 비활성화
   }
 
   // 첫번째 그룹 인풋박스 한번에 비우기
@@ -507,6 +508,7 @@
       material.value = '';
       material.disabled = false; // disable 속성 해제
     });
+    document.getElementById('haveMaterial1').disabled = true; // 1티어는 비활성화
   }
 
   
@@ -631,25 +633,17 @@
       var tierValue = parseInt(document.getElementById("selectTier").value); // 티어
       var goalValue = document.getElementById("goal").value; // 목표수량
 
-      var haveMaterialId2 = document.getElementById("haveMaterial2").value.match(/\d+/); // 가지고 있는 2티어 가공품
-      var input_haveMaterial2 = haveMaterialId2 ? parseInt(haveMaterialId2[0]) : 0; // 가지고 있는 2티어 가공품에서 숫자값만 추출
+      // var haveMaterialId2 = document.getElementById("haveMaterial2").value.match(/\d+/); 
+      // var input_haveMaterial2 = haveMaterialId2 ? parseInt(haveMaterialId2[0]) : 0; // 숫자값만 추출
 
-      var haveMaterialId3 = document.getElementById("haveMaterial3").value.match(/\d+/); // 가지고 있는 3티어 가공품
-      var input_haveMaterial3 = haveMaterialId3 ? parseInt(haveMaterialId3[0]) : 0; // 가지고 있는 3티어 가공품에서 숫자값만 추출
+      var haveMaterialId2 = document.getElementById("haveMaterial2").value; // 가지고 있는 2티어 가공품
+      var haveMaterialId3 = document.getElementById("haveMaterial3").value; // 가지고 있는 3티어 가공품
+      var haveMaterialId4 = document.getElementById("haveMaterial4").value; // 가지고 있는 4티어 가공품
+      var haveMaterialId5 = document.getElementById("haveMaterial5").value; // 가지고 있는 5티어 가공품
+      var haveMaterialId6 = document.getElementById("haveMaterial6").value; // 가지고 있는 6티어 가공품
+      var haveMaterialId7 = document.getElementById("haveMaterial7").value; // 가지고 있는 7티어 가공품
 
-      var haveMaterialId4 = document.getElementById("haveMaterial4").value.match(/\d+/); // 가지고 있는 4티어 가공품
-      var input_haveMaterial4 = haveMaterialId4 ? parseInt(haveMaterialId4[0]) : 0; // 가지고 있는 4티어 가공품에서 숫자값만 추출
-
-      var haveMaterialId5 = document.getElementById("haveMaterial5").value.match(/\d+/); // 가지고 있는 5티어 가공품
-      var input_haveMaterial5 = haveMaterialId5 ? parseInt(haveMaterialId5[0]) : 0; // 가지고 있는 5티어 가공품에서 숫자값만 추출
-
-      var haveMaterialId6 = document.getElementById("haveMaterial6").value.match(/\d+/); // 가지고 있는 6티어 가공품
-      var input_haveMaterial6 = haveMaterialId6 ? parseInt(haveMaterialId6[0]) : 0; // 가지고 있는 6티어 가공품에서 숫자값만 추출
-
-      var haveMaterialId7 = document.getElementById("haveMaterial7").value.match(/\d+/); // 가지고 있는 7티어 가공품
-      var input_haveMaterial7 = haveMaterialId7 ? parseInt(haveMaterialId7[0]) : 0; // 가지고 있는 7티어 가공품에서 숫자값만 추출
-
-      if(goalValue == "") {
+      if (goalValue == "") {
         alert('수량이 입력되지 않았습니다.');
       } else {
         switch (tierValue) {
@@ -657,87 +651,88 @@
             alert('1티어는 만들 수 없습니다.');
             break;
           case 2:
-            needMaterial2.value = goalValue * 1;
+              needMaterial2.value = goalValue * 1;
 
-            // 나머지 칸 필드 비활성화
-            for (var i = 3; i <= 8; i++) {
-              var needMaterial = document.getElementById("needMaterial" + i);
-              needMaterial.disabled = true;
-            }
+              // 나머지 칸 필드 비활성화
+              for (var i = 3; i <= 8; i++) {
+                var needMaterial = document.getElementById("needMaterial" + i);
+                needMaterial.disabled = true;
+              }
 
             break;
           case 3:
-            needMaterial3.value = goalValue * 2;
-            needMaterial2.value = (goalValue - input_haveMaterial2) * 1
-            
-            // 나머지 칸 필드 비활성화
-            for (var i = 4; i <= 8; i++) {
-              var needMaterial = document.getElementById("needMaterial" + i);
-              needMaterial.disabled = true;
-            }
+              needMaterial3.value = goalValue * 2;
+              needMaterial2.value = (goalValue - haveMaterialId2) * 1
+              
+              // 나머지 칸 필드 비활성화
+              for (var i = 4; i <= 8; i++) {
+                var needMaterial = document.getElementById("needMaterial" + i);
+                needMaterial.disabled = true;
+              }
 
             break;
           case 4:
-            needMaterial4.value = goalValue * 2;
-            needMaterial3.value = (goalValue - input_haveMaterial3) * 2;
-            needMaterial2.value = (goalValue - input_haveMaterial3 - input_haveMaterial2) * 1;
+              needMaterial4.value = goalValue * 2;
+              needMaterial3.value = (goalValue - haveMaterialId3) * 2;
+              needMaterial2.value = (goalValue - haveMaterialId3 - haveMaterialId2) * 1;
 
-            // 나머지 칸 필드 비활성화
-            for (var i = 5; i <= 8; i++) {
-              var needMaterial = document.getElementById("needMaterial" + i);
-              needMaterial.disabled = true;
-            }
+              // 나머지 칸 필드 비활성화
+              for (var i = 5; i <= 8; i++) {
+                var needMaterial = document.getElementById("needMaterial" + i);
+                needMaterial.disabled = true;
+              }
 
             break;
           case 5:
-            needMaterial5.value = goalValue * 3;
-            needMaterial4.value = (goalValue - input_haveMaterial4) * 2;
-            needMaterial3.value = (goalValue - input_haveMaterial4 - input_haveMaterial3) * 2;
-            needMaterial2.value = (goalValue - input_haveMaterial4 - input_haveMaterial3 - input_haveMaterial2) * 1;
-            
-            // 나머지 칸 필드 비활성화
-            for (var i = 6; i <= 8; i++) {
-              var needMaterial = document.getElementById("needMaterial" + i);
-              needMaterial.disabled = true;
-            }
+              needMaterial5.value = goalValue * 3;
+              needMaterial4.value = (goalValue - haveMaterialId4) * 2;
+              needMaterial3.value = (goalValue - haveMaterialId4 - haveMaterialId3) * 2;
+              needMaterial2.value = (goalValue - haveMaterialId4 - haveMaterialId3 - haveMaterialId2) * 1;
+              
+              // 나머지 칸 필드 비활성화
+              for (var i = 6; i <= 8; i++) {
+                var needMaterial = document.getElementById("needMaterial" + i);
+                needMaterial.disabled = true;
+              }
+
             break;
-          case 6:
-            needMaterial6.value = goalValue * 4;
-            needMaterial5.value = (goalValue - input_haveMaterial5) * 3;
-            needMaterial4.value = (goalValue - input_haveMaterial5 - input_haveMaterial4) * 2;
-            needMaterial3.value = (goalValue - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3) * 2;
-            needMaterial2.value = (goalValue - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3 - input_haveMaterial2) * 1;
-            
-            // 나머지 칸 필드 비활성화
-            for (var i = 7; i <= 8; i++) {
-              var needMaterial = document.getElementById("needMaterial" + i);
-              needMaterial.disabled = true;
-            }
+          case 6:  
+              needMaterial6.value = goalValue * 4;
+              needMaterial5.value = (goalValue - haveMaterialId5) * 3;
+              needMaterial4.value = (goalValue - haveMaterialId5 - haveMaterialId4) * 2;
+              needMaterial3.value = (goalValue - haveMaterialId5 - haveMaterialId4 - haveMaterialId3) * 2;
+              needMaterial2.value = (goalValue - haveMaterialId5 - haveMaterialId4 - haveMaterialId3 - haveMaterialId2) * 1;
+              
+              // 나머지 칸 필드 비활성화
+              for (var i = 7; i <= 8; i++) {
+                var needMaterial = document.getElementById("needMaterial" + i);
+                needMaterial.disabled = true;
+              } 
 
             break;
           case 7:
-            needMaterial7.value = goalValue * 5;
-            needMaterial6.value = (goalValue - input_haveMaterial6) * 4;
-            needMaterial5.value = (goalValue - input_haveMaterial6 - input_haveMaterial5) * 3;
-            needMaterial4.value = (goalValue - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4) * 2;
-            needMaterial3.value = (goalValue - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3) * 2;
-            needMaterial2.value = (goalValue - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3 - input_haveMaterial2) * 1;
-
-            // 나머지 칸 필드 비활성화
-            for (var i = 8; i <= 8; i++) {
-              var needMaterial = document.getElementById("needMaterial" + i);
-              needMaterial.disabled = true;
-            }
+              needMaterial7.value = goalValue * 5;
+              needMaterial6.value = (goalValue - haveMaterialId6) * 4;
+              needMaterial5.value = (goalValue - haveMaterialId6 - haveMaterialId5) * 3;
+              needMaterial4.value = (goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4) * 2;
+              needMaterial3.value = (goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3) * 2;
+              needMaterial2.value = (goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3 - haveMaterialId2) * 1;
+  
+              // 나머지 칸 필드 비활성화
+              for (var i = 8; i <= 8; i++) {
+                var needMaterial = document.getElementById("needMaterial" + i);
+                needMaterial.disabled = true;
+              } 
 
             break;
           case 8:
-            needMaterial8.value = goalValue * 5;
-            needMaterial7.value = (goalValue - input_haveMaterial7) * 5;
-            needMaterial6.value = (goalValue - input_haveMaterial7 - input_haveMaterial6) * 4;
-            needMaterial5.value = (goalValue - input_haveMaterial7 - input_haveMaterial6 - input_haveMaterial5) * 3;
-            needMaterial4.value = (goalValue - input_haveMaterial7 - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4) * 2;
-            needMaterial3.value = (goalValue - input_haveMaterial7 - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3) * 2;
-            needMaterial2.value = (goalValue - input_haveMaterial7 - input_haveMaterial6 - input_haveMaterial5 - input_haveMaterial4 - input_haveMaterial3 - input_haveMaterial2) * 1;
+              needMaterial8.value = goalValue * 5;
+              needMaterial7.value = (goalValue - haveMaterialId3) * 5;
+              needMaterial6.value = (goalValue - haveMaterialId3 - haveMaterialId6) * 4;
+              needMaterial5.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5) * 3;
+              needMaterial4.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4) * 2;
+              needMaterial3.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3) * 2;
+              needMaterial2.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3 - haveMaterialId2) * 1;  
 
             break;
           default:
