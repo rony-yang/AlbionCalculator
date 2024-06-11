@@ -804,19 +804,20 @@
             break;
           case 3:
               needMaterial3.value = goalValue * 2; // 3티어 원재료 2개 필요
+              let condition1 = goalValue - haveMaterialId2;
 
               // 가지고있는 2티어 가공품이 부족할 때
-              if (goalValue - haveMaterialId2 > 0) {
+              if (condition1 > 0) {
                 useMaterial2.value = (haveMaterialId2 == 0) ? '' : haveMaterialId2 + '개 모두 사용'; // 0일때와 아닐때 구분
-                needMaterial2.value = goalValue - haveMaterialId2; // 목표수량만큼 부족분 더 만들기
+                needMaterial2.value = condition1; // 목표수량만큼 부족분 더 만들기
 
               // 가지고 있는 2티어 가공품이 목표수량일때
-              } else if (goalValue - haveMaterialId2 == 0) {
+              } else if (condition1 == 0) {
                 useMaterial2.value = haveMaterialId2 + '개 모두 사용';
 
               // 2티어 가공품을 목표수량보다 더 많이 가지고 있을 때  
               } else {
-                useMaterial2.value = haveMaterialId2 + '개 중 ' + (haveMaterialId2 - Math.abs(goalValue - haveMaterialId2)) + '개만 사용'; // 일부만 사용 표시
+                useMaterial2.value = haveMaterialId2 + '개 중 ' + (haveMaterialId2 - Math.abs(condition1)) + '개만 사용'; // 일부만 사용 표시
               }
 
               // '필요한 원재료' 나머지 칸 필드 비활성화
@@ -835,34 +836,36 @@
           case 4:
             needMaterial4.value = goalValue * 2; // 4티어 원재료 2개 필요
             // needMaterial3.value = (goalValue - haveMaterialId3) * 2;
-            // needMaterial2.value = (goalValue - haveMaterialId3 - haveMaterialId2) * 1;    
+            // needMaterial2.value = (goalValue - haveMaterialId3 - haveMaterialId2) * 1;
+            let condition2 = goalValue - haveMaterialId3;
+            let condition3 = goalValue - haveMaterialId3 - haveMaterialId2;
 
             // 가지고있는 3티어 가공품이 부족할 때
-            if (goalValue - haveMaterialId3 > 0) {
+            if (condition2 > 0) {
               useMaterial3.value = (haveMaterialId3 == 0) ? '' : haveMaterialId3 + '개 모두 사용'; // 0일때와 아닐때 구분
-              needMaterial3.value = (goalValue - haveMaterialId3) * 2; // 목표수량만큼 부족분 더 만들기
+              needMaterial3.value = (condition2) * 2; // 목표수량만큼 부족분 더 만들기
 
                 // 가지고있는 3티어 가공품, 2티어 가공품이 부족할 때
-                if (goalValue - haveMaterialId3 - haveMaterialId2 > 0) {
+                if (condition3 > 0) {
                   useMaterial2.value = (haveMaterialId2 == 0) ? '' : haveMaterialId2 + '개 모두 사용'; // 0일때와 아닐때 구분
-                  needMaterial2.value = goalValue - haveMaterialId2; // 목표수량만큼 부족분 더 만들기
+                  needMaterial2.value = condition3; // 목표수량만큼 부족분 더 만들기
 
                 // 가지고 있는 3티어 가공품은 부족하고, 2티어 가공품은 목표수량일때
-                } else if (goalValue - haveMaterialId3 - haveMaterialId2 == 0) {
+                } else if (condition3 == 0) {
                   useMaterial2.value = haveMaterialId2 + '개 모두 사용';
 
                 // 가지고 있는 3티어 가공품은 부족하고, 2티어 가공품을 목표수량보다 더 많이 가지고 있을 때  
                 } else {
-                  useMaterial2.value = haveMaterialId2 + '개 중 ' + Math.abs(goalValue - haveMaterialId3) + '개만 사용'; // 일부만 사용 표시
+                  useMaterial2.value = haveMaterialId2 + '개 중 ' + Math.abs(condition3) + '개만 사용'; // 일부만 사용 표시
                 }
             
             // 가지고 있는 3티어 가공품이 목표수량일때    
-            } else if (goalValue - haveMaterialId3 == 0) {
+            } else if (condition2 == 0) {
               useMaterial3.value = haveMaterialId3 + '개 모두 사용';
 
             // 3티어 가공품을 목표수량보다 더 많이 가지고 있을 때  
             } else {
-              useMaterial3.value = haveMaterialId3 + '개 중 ' + (haveMaterialId3 - Math.abs(goalValue - haveMaterialId3)) + '개만 사용'; // 일부만 사용 표시
+              useMaterial3.value = haveMaterialId3 + '개 중 ' + (haveMaterialId3 - Math.abs(condition2)) + '개만 사용'; // 일부만 사용 표시
             }
 
               // '필요한 원재료' 나머지 칸 필드 비활성화
@@ -883,47 +886,50 @@
               // needMaterial4.value = (goalValue - haveMaterialId4) * 2;
               // needMaterial3.value = (goalValue - haveMaterialId4 - haveMaterialId3) * 2;
               // needMaterial2.value = (goalValue - haveMaterialId4 - haveMaterialId3 - haveMaterialId2) * 1;
-             
+              let condition4 = goalValue - haveMaterialId4;
+              let condition5 = goalValue - haveMaterialId4 - haveMaterialId3;
+              let condition6 = goalValue - haveMaterialId4 - haveMaterialId3 - haveMaterialId2;
+
             // 가지고있는 4티어 가공품이 부족할 때  
-            if (goalValue - haveMaterialId4 > 0) {
+            if (condition4 > 0) {
               useMaterial4.value = (haveMaterialId4 == 0) ? '' : haveMaterialId4 + '개 모두 사용'; // 0일때와 아닐때 구분
-              needMaterial4.value = (goalValue - haveMaterialId4) * 2; // 목표수량만큼 부족분 더 만들기
+              needMaterial4.value = (condition4) * 2; // 목표수량만큼 부족분 더 만들기
 
               // 가지고있는 4티어 가공품, 3티어 가공품이 부족할 때
-              if (goalValue - haveMaterialId4 - haveMaterialId3 > 0) {
+              if (condition5 > 0) {
                 useMaterial3.value = (haveMaterialId3 == 0) ? '' : haveMaterialId3 + '개 모두 사용'; // 0일때와 아닐때 구분
-                needMaterial3.value = (goalValue - haveMaterialId4 - haveMaterialId3) * 2; // 목표수량만큼 부족분 더 만들기
+                needMaterial3.value = (condition5) * 2; // 목표수량만큼 부족분 더 만들기
 
                 // 가지고있는 4티어 가공품, 3티어 가공품, 2티어 가공품이 부족할 때
-                if (goalValue - haveMaterialId4 - haveMaterialId3 - haveMaterialId2 > 0) {
+                if (condition6 > 0) {
                   useMaterial2.value = (haveMaterialId2 == 0) ? '' : haveMaterialId2 + '개 모두 사용'; // 0일때와 아닐때 구분
-                  needMaterial2.value = goalValue - haveMaterialId4 - haveMaterialId3 - haveMaterialId2; // 목표수량만큼 부족분 더 만들기
+                  needMaterial2.value = condition6; // 목표수량만큼 부족분 더 만들기
 
                 // 가지고있는 4티어 가공품, 3티어 가공품은 부족하고, 2티어 가공품이 목표수량일때   
-                } else if (goalValue - haveMaterialId4 - haveMaterialId3 - haveMaterialId2 == 0) {
+                } else if (condition6 == 0) {
                   useMaterial2.value = haveMaterialId2 + '개 모두 사용';
                 
                 // 가지고있는 4티어 가공품, 3티어 가공품은 부족하고, 2티어 가공품을 목표수량보다 더 많이 가지고 있을 때  
                 } else {
-                  useMaterial2.value = haveMaterialId2 + '개 중 ' + (haveMaterialId2 - Math.abs(goalValue - haveMaterialId4 - haveMaterialId3 - haveMaterialId2)) + '개만 사용'; // 일부만 사용 표시
+                  useMaterial2.value = haveMaterialId2 + '개 중 ' + (haveMaterialId2 - Math.abs(condition6)) + '개만 사용'; // 일부만 사용 표시
                 }
 
               // 가지고 있는 4티어 가공품은 부족하고, 3티어 가공품이 목표수량일때    
-              } else if (goalValue - haveMaterialId4 - haveMaterialId3 == 0) {
+              } else if (condition5 == 0) {
                 useMaterial3.value = (haveMaterialId3 == 0) ? '' : haveMaterialId3 + '개 모두 사용'; // 0일때와 아닐때 구분
               
               // 가지고 있는 4티어 가공품은 부족하고, 3티어 가공품을 목표수량보다 더 많이 가지고 있을 때
               } else {
-                useMaterial3.value = haveMaterialId3 + '개 중 ' + (haveMaterialId3 - Math.abs(goalValue - haveMaterialId4 - haveMaterialId3)) + '개만 사용'; // 일부만 사용 표시
+                useMaterial3.value = haveMaterialId3 + '개 중 ' + (haveMaterialId3 - Math.abs(condition5)) + '개만 사용'; // 일부만 사용 표시
               }
 
-            // 가지고 있는 4티어 가공품이 수량이 목표수량일때  
-            } else if (goalValue - haveMaterialId4 == 0) {
+            // 가지고 있는 4티어 가공품이 목표수량일때  
+            } else if (condition4 == 0) {
               useMaterial4.value = haveMaterialId4 + '개 모두 사용';
 
             // 4티어 가공품을 목표수량보다 더 많이 가지고 있을 때  
             } else {
-              useMaterial4.value = haveMaterialId4 + '개 중 ' + (haveMaterialId4 - Math.abs(goalValue - haveMaterialId4)) + '개만 사용'; // 일부만 사용 표시
+              useMaterial4.value = haveMaterialId4 + '개 중 ' + (haveMaterialId4 - Math.abs(condition4)) + '개만 사용'; // 일부만 사용 표시
             }
 
               // '필요한 원재료' 나머지 칸 필드 비활성화
@@ -945,38 +951,281 @@
               // needMaterial4.value = (goalValue - haveMaterialId5 - haveMaterialId4) * 2;
               // needMaterial3.value = (goalValue - haveMaterialId5 - haveMaterialId4 - haveMaterialId3) * 2;
               // needMaterial2.value = (goalValue - haveMaterialId5 - haveMaterialId4 - haveMaterialId3 - haveMaterialId2) * 1;
+              let condition7  = goalValue - haveMaterialId5;
+              let condition8  = goalValue - haveMaterialId5 - haveMaterialId4;
+              let condition9  = goalValue - haveMaterialId5 - haveMaterialId4 - haveMaterialId3;
+              let condition10 = goalValue - haveMaterialId5 - haveMaterialId4 - haveMaterialId3 - haveMaterialId2;
               
-              // 나머지 칸 필드 비활성화
+            // 가지고있는 5티어 가공품이 부족할 때  
+            if (condition7 > 0) {
+              useMaterial5.value = (haveMaterialId5 == 0) ? '' : haveMaterialId5 + '개 모두 사용'; // 0일때와 아닐때 구분
+              needMaterial5.value = (condition7) * 3; // 목표수량만큼 부족분 더 만들기
+
+              // 가지고있는 5티어 가공품, 4티어 가공품이 부족할 때  
+              if (condition8 > 0) {
+                useMaterial4.value = (haveMaterialId4 == 0) ? '' : haveMaterialId4 + '개 모두 사용'; // 0일때와 아닐때 구분
+                needMaterial4.value = (condition8) * 2; // 목표수량만큼 부족분 더 만들기
+
+                // 가지고있는 5티어 가공품, 4티어 가공품, 3티어 가공품이 부족할 때
+                if (condition9 > 0) {
+                  useMaterial3.value = (haveMaterialId3 == 0) ? '' : haveMaterialId3 + '개 모두 사용'; // 0일때와 아닐때 구분
+                  needMaterial3.value = (condition9) * 2; // 목표수량만큼 부족분 더 만들기
+
+                  // 가지고있는 5티어 가공품, 4티어 가공품, 3티어 가공품, 2티어 가공품이 부족할 때
+                  if (condition10 > 0) {
+                    useMaterial2.value = (haveMaterialId2 == 0) ? '' : haveMaterialId2 + '개 모두 사용'; // 0일때와 아닐때 구분
+                    needMaterial2.value = condition10; // 목표수량만큼 부족분 더 만들기
+
+                  // 가지고있는 5티어 가공품, 4티어 가공품, 3티어 가공품은 부족하고, 2티어 가공품이 목표수량일때   
+                  } else if (condition10 == 0) {
+                    useMaterial2.value = haveMaterialId2 + '개 모두 사용';
+                  
+                  // 가지고있는 5티어 가공품, 4티어 가공품, 3티어 가공품은 부족하고, 2티어 가공품을 목표수량보다 더 많이 가지고 있을 때  
+                  } else {
+                    useMaterial2.value = haveMaterialId2 + '개 중 ' + (haveMaterialId2 - Math.abs(condition10)) + '개만 사용'; // 일부만 사용 표시
+                  }
+
+                // 가지고 있는 5티어 가공품, 4티어 가공품은 부족하고, 3티어 가공품이 목표수량일때    
+                } else if (condition9 == 0) {
+                  useMaterial3.value = (haveMaterialId3 == 0) ? '' : haveMaterialId3 + '개 모두 사용'; // 0일때와 아닐때 구분
+                
+                // 가지고 있는 5티어 가공품, 4티어 가공품은 부족하고, 3티어 가공품을 목표수량보다 더 많이 가지고 있을 때
+                } else {
+                  useMaterial3.value = haveMaterialId3 + '개 중 ' + (haveMaterialId3 - Math.abs(condition9)) + '개만 사용'; // 일부만 사용 표시
+                }
+
+              // 가지고 있는 5티어 가공품은 부족하고, 4티어 가공품이 목표수량일때  
+              } else if (condition8 == 0) {
+                useMaterial4.value = haveMaterialId4 + '개 모두 사용';
+
+              // 가지고 있는 5티어 가공품은 부족하고, 4티어 가공품을 목표수량보다 더 많이 가지고 있을 때  
+              } else {
+                useMaterial4.value = haveMaterialId4 + '개 중 ' + (haveMaterialId4 - Math.abs(condition8)) + '개만 사용'; // 일부만 사용 표시
+              }
+
+            // 가지고 있는 5티어 가공품이 목표수량일때   
+            } else if (condition7 == 0) {
+              useMaterial5.value = haveMaterialId5 + '개 모두 사용';
+
+            // 5티어 가공품을 목표수량보다 더 많이 가지고 있을 때    
+            } else {
+              useMaterial5.value = haveMaterialId5 + '개 중 ' + (haveMaterialId5 - Math.abs(condition7)) + '개만 사용'; // 일부만 사용 표시
+            }
+
+              // '필요한 원재료' 나머지 칸 필드 비활성화
               for (var i = 7; i <= 8; i++) {
                 var needMaterial = document.getElementById("needMaterial" + i);
                 needMaterial.disabled = true;
-              } 
+              }
+
+              // '가지고 있는 수량' 나머지 칸 필드 비활성화
+              for (var i = 6; i <= 8; i++) {
+                var useMaterial = document.getElementById("useMaterial" + i);
+                useMaterial.disabled = true;
+              }
 
             break;
           case 7:
-              needMaterial7.value = goalValue * 5;
-              needMaterial6.value = (goalValue - haveMaterialId6) * 4;
-              needMaterial5.value = (goalValue - haveMaterialId6 - haveMaterialId5) * 3;
-              needMaterial4.value = (goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4) * 2;
-              needMaterial3.value = (goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3) * 2;
-              needMaterial2.value = (goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3 - haveMaterialId2) * 1;
-  
-              // 나머지 칸 필드 비활성화
+              needMaterial7.value = goalValue * 5; // 7티어 원재료 5개 필요
+              // needMaterial6.value = (goalValue - haveMaterialId6) * 4;
+              // needMaterial5.value = (goalValue - haveMaterialId6 - haveMaterialId5) * 3;
+              // needMaterial4.value = (goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4) * 2;
+              // needMaterial3.value = (goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3) * 2;
+              // needMaterial2.value = (goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3 - haveMaterialId2) * 1;
+              let condition11 = goalValue - haveMaterialId6;
+              let condition12 = goalValue - haveMaterialId6 - haveMaterialId5;
+              let condition13 = goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4;
+              let condition14 = goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3;
+              let condition15 = goalValue - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3 - haveMaterialId2;
+
+              // 가지고있는 6티어 가공품이 부족할 때  
+              if (condition11 > 0) {
+                useMaterial6.value = (haveMaterialId6 == 0) ? '' : haveMaterialId6 + '개 모두 사용'; // 0일때와 아닐때 구분
+                needMaterial6.value = (condition11) * 4; // 목표수량만큼 부족분 더 만들기
+
+                // 가지고있는 6티어 가공품, 5티어 가공품이 부족할 때  
+                if (condition12 > 0) {
+                  useMaterial5.value = (haveMaterialId5 == 0) ? '' : haveMaterialId5 + '개 모두 사용'; // 0일때와 아닐때 구분
+                  needMaterial5.value = (condition12) * 3; // 목표수량만큼 부족분 더 만들기
+
+                  // 가지고있는 6티어 가공품, 5티어 가공품, 4티어 가공품이 부족할 때  
+                  if (condition13 > 0) {
+                    useMaterial4.value = (haveMaterialId4 == 0) ? '' : haveMaterialId4 + '개 모두 사용'; // 0일때와 아닐때 구분
+                    needMaterial4.value = (condition13) * 2; // 목표수량만큼 부족분 더 만들기
+
+                    // 가지고있는 6티어 가공품, 5티어 가공품, 4티어 가공품, 3티어 가공품이 부족할 때
+                    if (condition14 > 0) {
+                      useMaterial3.value = (haveMaterialId3 == 0) ? '' : haveMaterialId3 + '개 모두 사용'; // 0일때와 아닐때 구분
+                      needMaterial3.value = (condition14) * 2; // 목표수량만큼 부족분 더 만들기
+
+                      // 가지고있는 6티어 가공품, 5티어 가공품, 4티어 가공품, 3티어 가공품, 2티어 가공품이 부족할 때
+                      if (condition15 > 0) {
+                        useMaterial2.value = (haveMaterialId2 == 0) ? '' : haveMaterialId2 + '개 모두 사용'; // 0일때와 아닐때 구분
+                        needMaterial2.value = condition15; // 목표수량만큼 부족분 더 만들기
+
+                      // 가지고있는 6티어 가공품, 5티어 가공품, 4티어 가공품, 3티어 가공품은 부족하고, 2티어 가공품이 목표수량일때   
+                      } else if (condition15 == 0) {
+                        useMaterial2.value = haveMaterialId2 + '개 모두 사용';
+                      
+                      // 가지고있는 6티어 가공품, 5티어 가공품, 4티어 가공품, 3티어 가공품은 부족하고, 2티어 가공품을 목표수량보다 더 많이 가지고 있을 때  
+                      } else {
+                        useMaterial2.value = haveMaterialId2 + '개 중 ' + (haveMaterialId2 - Math.abs(condition15)) + '개만 사용'; // 일부만 사용 표시
+                      }
+
+                    // 가지고 있는 6티어 가공품, 5티어 가공품, 4티어 가공품은 부족하고, 3티어 가공품이 목표수량일때    
+                    } else if (condition14 == 0) {
+                      useMaterial3.value = (haveMaterialId3 == 0) ? '' : haveMaterialId3 + '개 모두 사용'; // 0일때와 아닐때 구분
+                    
+                    // 가지고 있는 6티어 가공품, 5티어 가공품, 4티어 가공품은 부족하고, 3티어 가공품을 목표수량보다 더 많이 가지고 있을 때
+                    } else {
+                      useMaterial3.value = haveMaterialId3 + '개 중 ' + (haveMaterialId3 - Math.abs(condition14)) + '개만 사용'; // 일부만 사용 표시
+                    }
+
+                  // 가지고 있는 6티어 가공품, 5티어 가공품은 부족하고, 4티어 가공품이 목표수량일때  
+                  } else if (condition13 == 0) {
+                    useMaterial4.value = haveMaterialId4 + '개 모두 사용';
+
+                  // 가지고 있는 6티어 가공품, 5티어 가공품은 부족하고, 4티어 가공품을 목표수량보다 더 많이 가지고 있을 때  
+                  } else {
+                    useMaterial4.value = haveMaterialId4 + '개 중 ' + (haveMaterialId4 - Math.abs(condition13)) + '개만 사용'; // 일부만 사용 표시
+                  }
+
+                // 가지고 있는 6티어 가공품은 부족하고, 5티어 가공품이 목표수량일때   
+                } else if (condition12 == 0) {
+                  useMaterial5.value = haveMaterialId5 + '개 모두 사용';
+
+                // 가지고 있는 6티어 가공품은 부족하고, 5티어 가공품을 목표수량보다 더 많이 가지고 있을 때    
+                } else {
+                  useMaterial5.value = haveMaterialId5 + '개 중 ' + (haveMaterialId5 - Math.abs(condition12)) + '개만 사용'; // 일부만 사용 표시
+                }
+
+              // 가지고 있는 6티어 가공품이 목표수량일때     
+              } else if (condition11 == 0) {
+                useMaterial6.value = haveMaterialId6 + '개 모두 사용';
+
+              // 6티어 가공품을 목표수량보다 더 많이 가지고 있을 때                  
+              } else {
+                useMaterial6.value = haveMaterialId6 + '개 중 ' + (haveMaterialId6 - Math.abs(condition11)) + '개만 사용'; // 일부만 사용 표시
+              }
+
+              // '필요한 원재료' 나머지 칸 필드 비활성화
               for (var i = 8; i <= 8; i++) {
                 var needMaterial = document.getElementById("needMaterial" + i);
                 needMaterial.disabled = true;
-              } 
+              }
+
+              // '가지고 있는 수량' 나머지 칸 필드 비활성화
+              for (var i = 7; i <= 8; i++) {
+                var useMaterial = document.getElementById("useMaterial" + i);
+                useMaterial.disabled = true;
+              }
 
             break;
           case 8:
-              needMaterial8.value = goalValue * 5;
-              needMaterial7.value = (goalValue - haveMaterialId3) * 5;
-              needMaterial6.value = (goalValue - haveMaterialId3 - haveMaterialId6) * 4;
-              needMaterial5.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5) * 3;
-              needMaterial4.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4) * 2;
-              needMaterial3.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3) * 2;
-              needMaterial2.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3 - haveMaterialId2) * 1;  
+              needMaterial8.value = goalValue * 5; // 8티어 원재료 5개 필요
+              // needMaterial7.value = (goalValue - haveMaterialId3) * 5;
+              // needMaterial6.value = (goalValue - haveMaterialId3 - haveMaterialId6) * 4;
+              // needMaterial5.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5) * 3;
+              // needMaterial4.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4) * 2;
+              // needMaterial3.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3) * 2;
+              // needMaterial2.value = (goalValue - haveMaterialId3 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3 - haveMaterialId2) * 1;  
+              let condition16 = goalValue - haveMaterialId7;
+              let condition17 = goalValue - haveMaterialId7 - haveMaterialId6;
+              let condition18 = goalValue - haveMaterialId7 - haveMaterialId6 - haveMaterialId5;
+              let condition19 = goalValue - haveMaterialId7 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4;
+              let condition20 = goalValue - haveMaterialId7 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3;
+              let condition21 = goalValue - haveMaterialId7 - haveMaterialId6 - haveMaterialId5 - haveMaterialId4 - haveMaterialId3 - haveMaterialId2;
 
+              // 가지고있는 7티어 가공품이 부족할 때  
+              if (condition16 > 0) {
+                useMaterial7.value = (haveMaterialId7 == 0) ? '' : haveMaterialId7 + '개 모두 사용'; // 0일때와 아닐때 구분
+                needMaterial7.value = (condition16) * 5; // 목표수량만큼 부족분 더 만들기
+
+                // 가지고있는 7티어 가공품, 6티어 가공품이 부족할 때  
+                if (condition17 > 0) {
+                  useMaterial6.value = (haveMaterialId6 == 0) ? '' : haveMaterialId6 + '개 모두 사용'; // 0일때와 아닐때 구분
+                  needMaterial6.value = (condition17) * 4; // 목표수량만큼 부족분 더 만들기
+
+                  // 가지고있는 7티어 가공품, 6티어 가공품, 5티어 가공품이 부족할 때  
+                  if (condition18 > 0) {
+                    useMaterial5.value = (haveMaterialId5 == 0) ? '' : haveMaterialId5 + '개 모두 사용'; // 0일때와 아닐때 구분
+                    needMaterial5.value = (condition18) * 3; // 목표수량만큼 부족분 더 만들기
+
+                    // 가지고있는 7티어 가공품, 6티어 가공품, 5티어 가공품, 4티어 가공품이 부족할 때  
+                    if (condition19 > 0) {
+                      useMaterial4.value = (haveMaterialId4 == 0) ? '' : haveMaterialId4 + '개 모두 사용'; // 0일때와 아닐때 구분
+                      needMaterial4.value = (condition19) * 2; // 목표수량만큼 부족분 더 만들기
+
+                      // 가지고있는 7티어 가공품, 6티어 가공품, 5티어 가공품, 4티어 가공품, 3티어 가공품이 부족할 때
+                      if (condition20 > 0) {
+                        useMaterial3.value = (haveMaterialId3 == 0) ? '' : haveMaterialId3 + '개 모두 사용'; // 0일때와 아닐때 구분
+                        needMaterial3.value = (condition20) * 2; // 목표수량만큼 부족분 더 만들기
+
+                        // 가지고있는 7티어 가공품, 6티어 가공품, 5티어 가공품, 4티어 가공품, 3티어 가공품, 2티어 가공품이 부족할 때
+                        if (condition21 > 0) {
+                          useMaterial2.value = (haveMaterialId2 == 0) ? '' : haveMaterialId2 + '개 모두 사용'; // 0일때와 아닐때 구분
+                          needMaterial2.value = condition21; // 목표수량만큼 부족분 더 만들기
+
+                        // 가지고있는 7티어 가공품, 6티어 가공품, 5티어 가공품, 4티어 가공품, 3티어 가공품은 부족하고, 2티어 가공품이 목표수량일때   
+                        } else if (condition21 == 0) {
+                          useMaterial2.value = haveMaterialId2 + '개 모두 사용';
+                        
+                        // 가지고있는 7티어 가공품, 6티어 가공품, 5티어 가공품, 4티어 가공품, 3티어 가공품은 부족하고, 2티어 가공품을 목표수량보다 더 많이 가지고 있을 때  
+                        } else {
+                          useMaterial2.value = haveMaterialId2 + '개 중 ' + (haveMaterialId2 - Math.abs(condition21)) + '개만 사용'; // 일부만 사용 표시
+                        }
+
+                      // 가지고 있는 7티어 가공품, 6티어 가공품, 5티어 가공품, 4티어 가공품은 부족하고, 3티어 가공품이 목표수량일때    
+                      } else if (condition20 == 0) {
+                        useMaterial3.value = (haveMaterialId3 == 0) ? '' : haveMaterialId3 + '개 모두 사용'; // 0일때와 아닐때 구분
+                      
+                      // 가지고 있는 7티어 가공품, 6티어 가공품, 5티어 가공품, 4티어 가공품은 부족하고, 3티어 가공품을 목표수량보다 더 많이 가지고 있을 때
+                      } else {
+                        useMaterial3.value = haveMaterialId3 + '개 중 ' + (haveMaterialId3 - Math.abs(condition20)) + '개만 사용'; // 일부만 사용 표시
+                      }
+
+                    // 가지고 있는 7티어 가공품, 6티어 가공품, 5티어 가공품은 부족하고, 4티어 가공품이 목표수량일때  
+                    } else if (condition19 == 0) {
+                      useMaterial4.value = haveMaterialId4 + '개 모두 사용';
+
+                    // 가지고 있는 7티어 가공품, 6티어 가공품, 5티어 가공품은 부족하고, 4티어 가공품을 목표수량보다 더 많이 가지고 있을 때  
+                    } else {
+                      useMaterial4.value = haveMaterialId4 + '개 중 ' + (haveMaterialId4 - Math.abs(condition19)) + '개만 사용'; // 일부만 사용 표시
+                    }
+
+                  // 가지고 있는 7티어 가공품, 6티어 가공품은 부족하고, 5티어 가공품이 목표수량일때   
+                  } else if (condition18 == 0) {
+                    useMaterial5.value = haveMaterialId5 + '개 모두 사용';
+
+                  // 가지고 있는 7티어 가공품, 6티어 가공품은 부족하고, 5티어 가공품을 목표수량보다 더 많이 가지고 있을 때    
+                  } else {
+                    useMaterial5.value = haveMaterialId5 + '개 중 ' + (haveMaterialId5 - Math.abs(condition18)) + '개만 사용'; // 일부만 사용 표시
+                  }
+
+                // 가지고 있는 7티어 가공품은 부족하고, 6티어 가공품이 목표수량일때     
+                } else if (condition17 == 0) {
+                  useMaterial6.value = haveMaterialId6 + '개 모두 사용';
+
+                // 가지고 있는 7티어 가공품은 부족하고, 6티어 가공품을 목표수량보다 더 많이 가지고 있을 때                  
+                } else {
+                  useMaterial6.value = haveMaterialId6 + '개 중 ' + (haveMaterialId6 - Math.abs(condition17)) + '개만 사용'; // 일부만 사용 표시
+                }
+
+              // 가지고 있는 7티어 가공품이 목표수량일때
+              } else if (condition16 == 0) {
+                useMaterial7.value = haveMaterialId7 + '개 모두 사용';
+
+              // 7티어 가공품을 목표수량보다 더 많이 가지고 있을 때                  
+              } else {
+                useMaterial7.value = haveMaterialId7 + '개 중 ' + (haveMaterialId7 - Math.abs(condition16)) + '개만 사용'; // 일부만 사용 표시
+              }
+
+              // '가지고 있는 수량' 나머지 칸 필드 비활성화
+              for (var i = 8; i <= 8; i++) {
+                var useMaterial = document.getElementById("useMaterial" + i);
+                useMaterial.disabled = true;
+              }
+              
             break;
           default:
             
