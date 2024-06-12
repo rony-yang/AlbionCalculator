@@ -1,0 +1,37 @@
+<style>
+  .nav_link {
+		color: rgb(0, 0, 0);
+		transition: color 0.2s ease;
+    margin-left: 20px;
+    text-decoration: none;
+    padding: 2px 10px;
+	}
+  .nav_link:hover,
+  .nav_link.active {
+    background-color: #9900ff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+  }
+</style>
+<nav id="nav">
+  <a href="/albion" class="nav_link">제작</a>
+  <a href="/chickenOmelette" class="nav_link">치킨오믈렛</a>
+  <hr>
+</nav>
+
+<script>
+	let currentURL = window.location.pathname; // 현재 선택되어있는 url
+	let nav_links = document.querySelectorAll('#nav .nav_link');
+
+  // 현재 선택되어있는 페이지 활성화
+  nav_links.forEach(function(link) {
+    let href = link.getAttribute('href');
+    if (href === currentURL) {
+			link.classList.add('active');
+		}
+	});
+
+</script>
