@@ -68,10 +68,15 @@
     }
     #tableDiv {
       display: flex;
+      flex-wrap: nowrap;
+      justify-content: start;
     }
     table {
         border-collapse: collapse;
         margin-right: 10px;
+    }
+    #tableDiv table {
+      margin-right: 10px;
     }
     /* 휴대폰 화면 사이즈 css */
     @media only screen and (max-width: 1215px) {
@@ -97,11 +102,10 @@
       }
       #tableDiv {
         display: none; /* 평소에는 닫혀있도록 설정 */
+        flex-direction: column;
       }
-      .tableDiv table {
-        width: 100%;
-        display: flex;
-        margin-bottom: 20px;
+      .usage-needs-container {
+        flex-direction: column; /* 두 div를 세로로 배치 */
       }
     }
     
@@ -199,8 +203,8 @@
           </div>
         </div>
       </div>
-      <div style="display: flex;">
-        <div style="margin-top: 30px; margin-right: 50px;">
+      <div class="usage-needs-container" style="display: flex;">
+        <div style="margin-top: 30px;">
           <span>가지고 있는 수량에서 사용</span>
           <div class="input-container">
             <span class="span-container">1티어</span>
@@ -243,6 +247,7 @@
             <input id="useMaterial8" type="text" class="material-input2">
           </div>  
         </div>
+        <div style="margin-right: 50px;"></div>
         <div style="margin-top: 30px;">
           <span>추가로 필요한 원재료</span>
           <div class="input-container">
@@ -288,6 +293,8 @@
         </div>
     </div>
 </div>
+
+
 <div style="margin-top: 30px;">
   <div>- 2티어 가공품 : 2티어 원재료 1개</div>
   <div>- 3티어 가공품 : 3티어 원재료 2개, 2티어 가공품 1개</div>
@@ -302,7 +309,7 @@
 <button class="toggle-button" onclick="toggleTableSet()">재료 확인하기</button>
 <div id="tableDiv">
 
-      <table id="tableWood" style="margin-right: 10px;">
+      <table id="tableWood">
         <tr>
           <td colspan="3" style="text-align: center;">목재</td>
         </tr>
@@ -352,7 +359,7 @@
           <td>화이트우드 판자</td>
         </tr>
       </table>
-      <table id="tableStone" style="margin-right: 10px;">
+      <table id="tableStone">
         <tr>
           <td colspan="3" style="text-align: center;">석재</td>
         </tr>
@@ -402,7 +409,7 @@
           <td>대리석 석괴</td>
         </tr>
       </table>
-      <table id="tableOre" style="margin-right: 10px;">
+      <table id="tableOre">
         <tr>
           <td colspan="3" style="text-align: center;">광석</td>
         </tr>
@@ -452,7 +459,7 @@
           <td>아다만티움 강철주괴</td>
         </tr>
       </table>
-      <table id="tableLeather" style="margin-right: 10px;">
+      <table id="tableLeather">
         <tr>
           <td colspan="3" style="text-align: center;">가죽</td>
         </tr>
@@ -562,10 +569,17 @@
   // 토글 버튼
   function toggleTableSet() {
     var tableSet = document.getElementById("tableDiv");
-    if (tableSet.style.display === "none") {
-      tableSet.style.display = "block";
+    var tables = tableSet.getElementsByTagName("table");
+  
+    // Toggle the visibility of the table set
+    if (tableSet.style.display === "" || tableSet.style.display === "none") {
+      tableSet.style.display = "flex"; // Display the table set
+      // Ensure all tables are visible
+      for (var i = 0; i < tables.length; i++) {
+        tables[i].style.display = "table";
+      }
     } else {
-      tableSet.style.display = "none";
+      tableSet.style.display = "none"; // Hide the table set
     }
   }
 
