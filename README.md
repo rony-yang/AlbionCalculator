@@ -4,9 +4,9 @@ nodeJS 개인 프로젝트
 **1. 개발 목표** : 게임 알비온 재료를 쉽게 계산할 수 있는 계산기 제작
 
 **2. 메인 사진**
-![image](https://github.com/rony-yang/nodejs_CRUD_public2/assets/116271236/76394bb3-40fb-4638-8ad7-9b710f0c88d8)
+![image](https://github.com/rony-yang/AlbionCalculator/assets/116271236/75784997-3d82-4d3d-9f66-d59b857bee16)
 
-**3. URL 주소** : https://rony-yang.github.io/albion
+**3. URL 주소** : https://busik-kang.github.io/albion
 
 **4. 작업기간** : 2024년 6월
 
